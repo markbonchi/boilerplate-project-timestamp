@@ -41,7 +41,13 @@ app.get("/api/:time?", (req, res, next) => {
   }
   next()
 }, (req, res) => {
-  res.json({ "unix": req.unix, "utc": req.time.toUTCString() })
+  // console.log(req.time)
+  // res.json({ "unix": req.unix, "utc": req.time.toUTCString() })
+  if (req.time == "Invalid Date") {
+    res.json({ "error": "Invalid Date" })
+  } else {
+    res.json({ "unix": req.unix, "utc": req.time.toUTCString() })
+  }
 })
 
 // listen for requests :)
