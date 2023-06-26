@@ -25,6 +25,7 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+// API endpoint for time... 
 app.get("/api/:time", (req, res, next) => {
   req.unix = Date.parse(req.params.time);
   if (!req.unix) {
