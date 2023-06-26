@@ -26,13 +26,18 @@ app.get("/api/hello", function (req, res) {
 });
 
 // API endpoint for time... 
-app.get("/api/:time", (req, res, next) => {
-  req.unix = Date.parse(req.params.time);
-  if (!req.unix) {
-    req.time = new Date(parseInt(req.params.time));
-    req.unix = req.params.time
+app.get("/api/:time?", (req, res, next) => {
+  if (req.params.time) {
+    req.unix = Date.parse(req.params.time);
+    if (!req.unix) {
+      req.time = new Date(parseInt(req.params.time));
+      req.unix = req.params.time
+    } else {
+      req.time = new Date(req.unix)
+    }
   } else {
-    req.time = new Date(req.unix)
+    req.time = new Date();
+    req.unix = Math.floor(req.time.getTime() / 1000) * 1000
   }
   next()
 }, (req, res) => {
