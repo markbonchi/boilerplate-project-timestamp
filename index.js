@@ -33,7 +33,7 @@ app.get("/api/:time?", (req, res, next) => {
       req.time = new Date(parseInt(req.params.time));
       req.unix = req.params.time
     } else {
-      req.time = new Date(req.unix)
+      req.time = new Date(req.unix * 1000)
     }
   } else {
     req.time = new Date();
