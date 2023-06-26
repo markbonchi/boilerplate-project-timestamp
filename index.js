@@ -46,7 +46,7 @@ app.get("/api/:time?", (req, res, next) => {
   if (req.time == "Invalid Date") {
     res.json({ "error": "Invalid Date" })
   } else {
-    res.json({ "unix": req.unix, "utc": req.time.toUTCString() })
+    res.json({ "unix": req.unix.toString(), "utc": req.time.toUTCString() })
   }
 })
 
